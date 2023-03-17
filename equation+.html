@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quadratic Equation Solver</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: black;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+	<h1 style="color: royalblue; font: oxygen;">Quadratic Equation Solver (نموذج خطة عمل)</h1>
+	<form>
+		<label for="a">a:</label>
+		<input type="number" id="a" name="a" required><br><br>
+		<label for="b">b:</label>
+		<input type="number" id="b" name="b" required><br><br>
+		<label for="c">c:</label>
+		<input type="number" id="c" name="c" required><br><br>
+		<input type="submit" value="Solve">
+	</form>
+	<hr>
+	<p>Solutions:</p>
+    <p style="text-align: right; size: 12;">شرف الدين</p>
+	<div id="solutions"></div>
+	<script>
+		// function to solve quadratic equation
+		function solveQuadratic(a, b, c) {
+			var delta = Math.pow(b, 2) - 4 * a * c;
+			if (delta < 0) {
+				return "No real solutions";
+			} else if (delta == 0) {
+				var x = -b / (2 * a);
+				return "One solution: x = " + x;
+			} else {
+				var x1 = (-b + Math.sqrt(delta)) / (2 * a);
+				var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+				return "Two solutions: x1 = " + x1 + ", x2 = " + x2;
+			}
+		}
+		
+		// function to handle form submission
+		function handleSubmit(event) {
+			event.preventDefault();
+			var a = document.getElementById("a").value;
+			var b = document.getElementById("b").value;
+			var c = document.getElementById("c").value;
+			var solutions = document.getElementById("solutions");
+			solutions.innerHTML = solveQuadratic(a, b, c);
+		}
+
+		// attach event listener to form submit button
+		var form = document.querySelector("form");
+		form.addEventListener("submit", handleSubmit);
+	</script>
+</body>
+</html>
